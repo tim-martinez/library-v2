@@ -41,12 +41,15 @@ body {
     transition: 0.25s;
 }
 
+/* need to work on centering and spacing the cards max  width 1200 doesnt seem to be a good fix */
 .container {
     display: grid;
     margin: 50px;
     text-align: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
+    align-self: center;
+    max-width: 1200px;
     gap: 20px;
 }
 
@@ -78,8 +81,6 @@ label {
 ::backdrop {
     background-image: linear-gradient(
       45deg,
-      magenta,
-      rebeccapurple,
       dodgerblue,
       green
     );
@@ -92,7 +93,7 @@ label {
     background-color: rgb(84, 84, 84);
     display: grid;
     place-items: center;
-    border: 1px solid rgb(175, 175, 175);
+    border-radius: 10px;
   }
 
   .card div {
@@ -106,10 +107,6 @@ label {
     display: grid;
     place-items: center;
     border-radius: 10px;
-  }
-
-  .yellow {
-    background-color: yellow;
   }
 
 a {
@@ -135,4 +132,26 @@ a:hover {
     display: grid;
     place-items: center;
     border-radius: 10px;
+}
+
+dialog {
+    height: 400px;
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(84, 84, 84);
+}
+
+form {
+    margin-top: 30px;
+    display: grid;
+    gap:40px
+}
+
+form div {
+    justify-self: center;
+}
+
+input, select {
+     height: 30px;
 }

@@ -11,17 +11,23 @@ function Book(author,title,pages,status) {
 };
 
 //addBook method defined on Book Prototype
-Book.prototype.addBook = function() {
-    myLibrary.push(this);
-};
+// Book.prototype.addBook = function() {
+//     myLibrary.push(this);
+// };
 
+function addBook(newBook) {
+    myLibrary.push(newBook);
+};
 //manually add default books to myLibrary
-default1.addBook();
-default2.addBook();
+addBook(default1);
+addBook(default2);
 
 //display Books in container
 const container = document.querySelector('.container');
 function displayBooks(library){
+    while (container.firstChild){
+        container.removeChild(container.firstChild);
+    };
     library.forEach((element, index) => {
         const card = document.createElement('div');
         card.classList = 'card';
@@ -65,7 +71,7 @@ function statusColor (){
         if (element.innerHTML === 'Finished'){
             element.style.backgroundColor = "green";
         } else {
-            element.style.backgroundColor = "gold";
+            element.style.backgroundColor = "#bda100";
         };
     });
 };
@@ -89,9 +95,6 @@ container.addEventListener('click', (event) =>{
     if(event.target.classList.contains('remove')){
         let index = event.target.dataset.index;
         myLibrary.splice(index, 1);
-        while (container.firstChild){
-            container.removeChild(container.firstChild);
-        };
         displayBooks(myLibrary);
     };
     //status buttons
@@ -101,3 +104,33 @@ container.addEventListener('click', (event) =>{
     };
 });
 
+
+
+//add book button
+const addBtn = document.querySelector('#addBtn');
+const dialog = document.querySelector('#modal');
+const saveBtn = document.querySelector('#saveBtn');
+
+//show dialog on click
+addBtn.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+const form = document.querySelector('form');
+
+
+//handle submit button
+saveBtn.addEventListener('click', (event) => {
+    if (form.checkValidity()) {
+        event.preventDefault();
+        const author = document.querySelector('#author').value;
+        const title = document.querySelector('#title').value;
+        const pages = document.querySelector('#pages').value;
+        const status = document.querySelector('#statusSelect').value;
+        const newBook = new Book(author,title,pages, status);
+        addBook(newBook);
+        displayBooks(myLibrary);
+        form.reset();
+        dialog.close();
+    };
+});
