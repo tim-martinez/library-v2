@@ -48,8 +48,6 @@ body {
     text-align: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
-    align-self: center;
-    max-width: 1200px;
     gap: 20px;
 }
 
